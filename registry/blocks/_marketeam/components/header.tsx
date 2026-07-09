@@ -121,30 +121,21 @@ export function Header() {
         animation: "fade-down 0.8s cubic-bezier(0.22,1,0.36,1) both",
       }}
     >
-      <div
-        style={{
-          maxWidth: 1920,
-          margin: "0 auto",
-          padding: "24px 64px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 48 }}>
+      <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 xl:px-20 py-6 flex justify-between items-center">
+        <div className="flex items-center gap-6 md:gap-8 lg:gap-12">
           <img
             src="https://polo-pecan-73837341.figma.site/_assets/v11/17ae538989a509947a8de3892c644664895e69b1.png"
             alt="Marketeam"
             style={{ height: 32 }}
           />
-          <nav className="mt-nav-links" style={{ display: "flex", gap: 32 }}>
+          <nav className="hidden md:flex gap-6 lg:gap-8">
             {navLinks.map((label) => (
               <NavLink key={label} label={label} />
             ))}
           </nav>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+        <div className="flex items-center gap-4 lg:gap-6">
           <NavLink label="Log In" color="#ffffff" weight={500} />
           <BorderButton label="Join Now" />
         </div>

@@ -1,8 +1,8 @@
 "use client";
 
-import VideoBackground from "./_herovideo/components/video-background";
-import NavBar from "./_herovideo/components/nav-bar";
-import HeroContent from "./_herovideo/components/hero-content";
+import VideoBackground from "./components/video-background";
+import NavBar from "./components/nav-bar";
+import HeroContent from "./components/hero-content";
 
 export default function HeroVideo() {
   return (

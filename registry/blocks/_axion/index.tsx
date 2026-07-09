@@ -1,13 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Navbar } from "./_axion/components/navbar";
-import { HeroContent } from "./_axion/components/hero-content";
-import { About } from "./_axion/components/about";
-import { CaseStudies } from "./_axion/components/case-studies";
+import { Navbar } from "./components/navbar";
+import { HeroContent } from "./components/hero-content";
+import { About } from "./components/about";
+import { CaseStudies } from "./components/case-studies";
 
 const ShaderEffects = dynamic(
-  () => import("./_axion/components/shader-effects"),
+  () => import("./components/shader-effects"),
   { ssr: false }
 );
 

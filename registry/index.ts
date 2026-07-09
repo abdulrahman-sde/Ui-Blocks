@@ -1,23 +1,18 @@
 import type { RegistryEntry, Registry } from "./types";
 
-import Marketeam from "./blocks/marketeam";
-import Alwayzz from "./blocks/alwayzz";
-import Axion from "./blocks/axion";
-import Lumora from "./blocks/_lumora/lumora";
-import Aurora from "./blocks/aurora";
-import PasswordVault from "./blocks/password-vault";
-import HeroVideo from "./blocks/herovideo";
-import Datacore from "./blocks/datacore";
+import Marketeam from "./blocks/_marketeam";
+import Alwayzz from "./blocks/_alwayzz";
+import Axion from "./blocks/_axion";
+import Lumora from "./blocks/_lumora";
+import Aurora from "./blocks/_aurora";
+import PasswordVault from "./blocks/_password-vault";
+import HeroVideo from "./blocks/_herovideo";
+import Datacore from "./blocks/_datacore";
+import CozyPaws from "./blocks/_cozypaws";
 
 export type { RegistryEntry, Registry };
 
 export const registry: Registry = {
-  marketeam: {
-    id: "marketeam",
-    title: "Marketeam",
-    description: "Full marketing talent platform landing page",
-    component: Marketeam,
-  },
   alwayzz: {
     id: "alwayzz",
     title: "Alwayzz",
@@ -36,7 +31,12 @@ export const registry: Registry = {
     description: "Fullscreen cinematic hero for a mindfulness/focus app",
     component: Lumora,
   },
-
+  marketeam: {
+    id: "marketeam",
+    title: "Marketeam",
+    description: "Full marketing talent platform landing page",
+    component: Marketeam,
+  },
   aurora: {
     id: "aurora",
     title: "Aurora Sign Up",
@@ -47,21 +47,32 @@ export const registry: Registry = {
   "password-vault": {
     id: "password-vault",
     title: "Password Vault",
-    description: "Password manager landing page hero with looping video background, custom nav, and animated hero content",
+    description:
+      "Password manager landing page hero with looping video background, custom nav, and animated hero content",
     component: PasswordVault,
   },
 
   herovideo: {
     id: "herovideo",
     title: "Hero Video",
-    description: "Modern hero section with looping video background, custom JavaScript fade system, and search input box",
+    description:
+      "Modern hero section with looping video background, custom JavaScript fade system, and search input box",
     component: HeroVideo,
   },
 
   datacore: {
     id: "datacore",
     title: "Datacore",
-    description: "Full-screen hero with looping video background, glassmorphism tagline pill, and responsive nav with mobile overlay menu",
+    description:
+      "Full-screen hero with looping video background, glassmorphism tagline pill, and responsive nav with mobile overlay menu",
     component: Datacore,
+  },
+
+  cozypaws: {
+    id: "cozypaws",
+    title: "CozyPaws",
+    description:
+      "Pet store hero section with responsive header, animated heading, product/video side cards, and bottom image panel with overlays",
+    component: CozyPaws,
   },
 };

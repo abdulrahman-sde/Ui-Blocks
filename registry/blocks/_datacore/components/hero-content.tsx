@@ -3,7 +3,7 @@
 export default function HeroContent() {
   return (
     <div
-      className="relative z-10 flex flex-col items-center text-center"
+      className="relative z-10 flex flex-col items-center text-center "
       style={{
         margin: "0 auto",
         marginTop: 128,
@@ -24,6 +24,7 @@ export default function HeroContent() {
           height: 38,
           padding: "0 4px 0 0",
         }}
+        className="sm:mt-25"
       >
         <span
           style={{

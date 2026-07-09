@@ -13,10 +13,12 @@ export function LogoTicker() {
 
   return (
     <div
+      className="px-4 sm:px-0"
       style={{
         animation: "fade-up 0.8s cubic-bezier(0.22,1,0.36,1) 0.6s both",
         overflow: "hidden",
-        padding: "40px 0",
+        paddingTop: 40,
+        paddingBottom: 40,
       }}
     >
       <div

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { useCountUp } from "../hooks/use-count-up";
 
 interface AvatarData {
@@ -32,6 +33,8 @@ const orbitConfigs = [
   { size: 797, spin: "left", duration: 60, label: "counter-right" },
 ];
 
+const ORBIT_SIZE = 797;
+
 function OrbitRing({ diameter }: { diameter: number }) {
   return (
     <div
@@ -48,42 +51,77 @@ function OrbitRing({ diameter }: { diameter: number }) {
   );
 }
 
+function useContainerScale(ref: React.RefObject<HTMLDivElement | null>) {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver(([entry]) => {
+      const w = entry.contentRect.width;
+      setScale(Math.min(w / ORBIT_SIZE, 1));
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [ref]);
+
+  return scale;
+}
+
 export function OrbitCircles() {
   const count = useCountUp(20, 2000, 1200);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const scale = useContainerScale(wrapRef);
 
   return (
     <div
+      ref={wrapRef}
+      className="mt-orbit-wrap"
       style={{
-        position: "relative",
-        width: 797,
-        height: 797,
-        margin: "0 auto",
-        flexShrink: 0,
-        animation: "scale-in 1.2s cubic-bezier(0.22,1,0.36,1) 0.3s both",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        overflow: "hidden",
       }}
     >
-      {orbitConfigs.map((o, idx) => {
-        const orbitAvatars = avatars.filter((a) => a.orbit === idx + 1);
+      <div
+        className="mt-orbit-canvas"
+        style={{
+          position: "relative",
+          width: ORBIT_SIZE,
+          height: ORBIT_SIZE,
+          flexShrink: 0,
+          transform: `scale(${scale})`,
+          transformOrigin: "center center",
+          animation: "scale-in 1.2s cubic-bezier(0.22,1,0.36,1) 0.3s both",
+          animationFillMode: "backwards",
+        }}
+      >
+        {orbitConfigs.map((o, idx) => {
+          const orbitAvatars = avatars.filter((a) => a.orbit === idx + 1);
 
-        return (
-          <div
-            key={idx}
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              width: o.size,
-              height: o.size,
-              transform: "translate(-50%, -50%)",
-              animation: `spin-${o.spin} ${o.duration}s linear infinite`,
-            }}
-          >
-            <OrbitRing diameter={o.size} />
+          return (
+            <div
+              key={idx}
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                width: o.size,
+                height: o.size,
+                transform: "translate(-50%, -50%)",
+                animation: `spin-${o.spin} ${o.duration}s linear infinite`,
+              }}
+            >
+              <OrbitRing diameter={o.size} />
 
-            {orbitAvatars.map((a, i) => {
-              const s = a.size || 58;
-              return (
-                <div
+              {orbitAvatars.map((a, i) => {
+                const s = a.size || 58;
+                return (
+                  <div
                   key={i}
                   style={{
                     position: "absolute",
@@ -113,31 +151,32 @@ export function OrbitCircles() {
                     />
                   </div>
                 </div>
-              );
-            })}
+                );
+              })}
 
-            {idx === 0 && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  textAlign: "center",
-                  animation: "counter-right 30s linear infinite",
-                }}
-              >
-                <div style={{ fontFamily: "var(--font-urbanist)", fontSize: 64, fontWeight: 500, color: "#fff" }}>
-                  {count}k+
+              {idx === 0 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    textAlign: "center",
+                    animation: "counter-right 30s linear infinite",
+                  }}
+                >
+                  <div style={{ fontFamily: "var(--font-urbanist)", fontSize: 64, fontWeight: 500, color: "#fff" }}>
+                    {count}k+
+                  </div>
+                  <div style={{ fontFamily: "var(--font-urbanist)", fontSize: 16, fontWeight: 600, color: "#fff", marginTop: 4 }}>
+                    Specialists
+                  </div>
                 </div>
-                <div style={{ fontFamily: "var(--font-urbanist)", fontSize: 16, fontWeight: 600, color: "#fff", marginTop: 4 }}>
-                  Specialists
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      })}
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

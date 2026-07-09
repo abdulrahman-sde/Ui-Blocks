@@ -1,8 +1,8 @@
 "use client";
 
-import { Navbar } from "./_alwayzz/components/navbar";
-import { Hero } from "./_alwayzz/components/hero";
-import { TrustedBy } from "./_alwayzz/components/trusted-by";
+import { Navbar } from "./components/navbar";
+import { Hero } from "./components/hero";
+import { TrustedBy } from "./components/trusted-by";
 
 export default function Alwayzz() {
   return (

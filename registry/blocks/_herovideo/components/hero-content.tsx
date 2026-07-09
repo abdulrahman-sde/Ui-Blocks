@@ -12,10 +12,7 @@ export default function HeroContent() {
         gap: 44,
       }}
     >
-      <div
-        className="flex flex-col items-center"
-        style={{ gap: 34 }}
-      >
+      <div className="flex flex-col items-center sm:mt-34" style={{ gap: 34 }}>
         <div className="flex items-center" style={{ gap: 8 }}>
           <div
             className="flex items-center"
@@ -88,7 +85,8 @@ export default function HeroContent() {
             margin: 0,
           }}
         >
-          Upload your information and get powerful insights right away. Work smarter and achieve goals effortlessly.
+          Upload your information and get powerful insights right away. Work
+          smarter and achieve goals effortlessly.
         </p>
       </div>
 
